@@ -1,11 +1,151 @@
-/*
- * This is a manifest file that'll be compiled into application.css.
- *
- * With Propshaft, assets are served efficiently without preprocessing steps. You can still include
- * application-wide styles in this file, but keep in mind that CSS precedence will follow the standard
- * cascading order, meaning styles declared later in the document or manifest will override earlier ones,
- * depending on specificity.
- *
- * Consider organizing styles into separate files for maintainability.
- */
- @import "tailwindcss";
+
+/* ==============
+   Osnovne nastavitve
+   ============== */
+   html, body {
+    margin: 0;
+    padding: 0;
+    font-family: Arial, sans-serif;
+    background-color: #f9f9f9;
+    color: #333;
+  }
+  
+  /* Urejanje linkov na splošno */
+  a {
+    color: #333;
+    text-decoration: none;
+  }
+  
+  a:hover {
+    color: #c00; /* ob hoverju se barva spremeni v rdečkasto */
+  }
+  
+  /* ==============
+     Glava (header) in navigacija
+     ============== */
+  header {
+    background-color: #fff;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+    padding: 1rem;
+  }
+  
+  header nav {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    max-width: 1200px;
+    margin: 0 auto;
+  }
+  
+  /* Logo ali naslov na levi */
+  header nav .logo {
+    font-size: 1.5rem;
+    font-weight: bold;
+    color: #c00;
+  }
+  
+  /* Navigacijski meni na desni */
+  header nav ul {
+    list-style: none;
+    display: flex;
+    gap: 1rem;
+    margin: 0;
+    padding: 0;
+  }
+  
+  header nav ul li {
+    display: inline-block;
+  }
+  
+  /* ==============
+     Glavni del (main)
+     ============== */
+  main {
+    max-width: 1200px;
+    margin: 2rem auto;
+    padding: 0 1rem;
+  }
+  
+  /* ==============
+     Noga (footer)
+     ============== */
+  footer {
+    background-color: #333;
+    color: #fff;
+    padding: 2rem 1rem;
+  }
+  
+  /* Za razporeditev podatkov v treh stolpcih pri večjih zaslonih */
+  footer .footer-columns {
+    display: grid;
+    grid-template-columns: 1fr 1fr 1fr;
+    gap: 1.5rem;
+    max-width: 1200px;
+    margin: 0 auto;
+  }
+  
+  /* Naslovi v stolpcih */
+  footer .footer-columns h3 {
+    font-size: 1.2rem;
+    margin-bottom: 0.5rem;
+  }
+  
+  /* Odstavki v stolpcih */
+  footer .footer-columns p {
+    margin-bottom: 0.5rem;
+    line-height: 1.5;
+  }
+  
+  /* Spodnji del noge (copy, piškotki ipd.) */
+  footer .footer-bottom {
+    border-top: 1px solid #444;
+    margin-top: 1rem;
+    padding-top: 1rem;
+    text-align: center;
+    font-size: 0.9rem;
+  }
+  
+  footer .footer-bottom a {
+    color: #fff;
+    text-decoration: underline;
+    margin: 0 0.5rem;
+  }
+  
+  /* ==============
+     Animacije
+     ============== */
+  /* fadeIn */
+  @keyframes fadeIn {
+    from { opacity: 0; }
+    to   { opacity: 1; }
+  }
+  .animate-fadeIn {
+    animation: fadeIn 1.5s ease-in-out;
+  }
+  
+  /* fadeInUp */
+  @keyframes fadeInUp {
+    from {
+      opacity: 0;
+      transform: translateY(20px);
+    }
+    to {
+      opacity: 1;
+      transform: translateY(0);
+    }
+  }
+  .animate-fadeInUp {
+    animation: fadeInUp 1s ease-in-out;
+  }
+  
+  /* ==============
+     Primer prehodov (transition) in hover efekta
+     ============== */
+  .transition-bg {
+    transition: background-color 0.3s ease;
+  }
+  .transition-bg:hover {
+    background-color: #c00;
+    color: #fff;
+  }
+  
