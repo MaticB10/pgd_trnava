@@ -23,9 +23,6 @@ gem 'tailwindcss-rails'
 # Za OmniAuth Google OAuth2
 gem 'omniauth-google-oauth2'
 
-# Za MySQL (verjetno že obstaja, ker smo ustvarili projekt z --database=mysql)
-gem 'mysql2', '>= 0.5'
-
 # Puma je privzeto nameščen v Rails projektu (v Gemfile je tudi gem 'puma')
 
 
