@@ -1,0 +1,17 @@
+<h1>Seznam novic</h1>
+
+<% if @novicas.any? %>
+  <ul>
+    <% @novicas.each do |novica| %>
+      <li>
+        <h2><%= link_to novica.naslov, admin_novica_path(novica) %></h2>
+        <p><%= truncate(novica.vsebina, length: 150) %></p>
+        <p><strong>Datum:</strong> <%= novica.datum.strftime("%d.%m.%Y") if novica.datum %></p>
+      </li>
+    <% end %>
+  </ul>
+<% else %>
+  <p>Ni na voljo nobenih novic.</p>
+<% end %>
+
+<%= link_to "Ustvari novo novico", new_admin_novica_path, class: "btn btn-primary" %>
