@@ -1,10 +1,58 @@
-<% if user_signed_in? %>
-  <p class="mb-4">Prijavljeni ste kot: <%= current_user.email %></p>
-  <%= button_to "Odjava", destroy_user_session_path, method: :delete, data: { confirm: "Ste prepričani?" }, class: "btn" %>
-<% else %>
-  <h1 class="text-3xl font-bold">Dobrodošli na PGD Trnava</h1>
-  <p class="mb-4">Prijavite se s svojim uporabniškim imenom in geslom ali uporabite Google prijavo.</p>
-  <%= link_to "Prijava", new_user_session_path, class: "btn" %>
-  <%= link_to "Registracija", new_user_registration_path, class: "btn" %>
-  <%= link_to "Prijava z Google", user_google_oauth2_omniauth_authorize_path, class: "btn btn-google" %>
-<% end %>
+<div class="min-h-screen flex flex-col bg-gray-100">
+  <!-- Glava -->
+  <header class="bg-white shadow">
+    <div class="container mx-auto px-4 py-6 flex justify-between items-center">
+      <%= link_to "PGD Trnava", root_path, class: "text-3xl font-bold text-red-600" %>
+      <% if user_signed_in? %>
+        <div class="flex items-center space-x-4">
+          <span class="text-gray-600">Prijavljeni ste kot: <%= current_user.email %></span>
+          <%= button_to "Odjava", destroy_user_session_path, method: :delete, data: { confirm: "Ste prepričani?" }, class: "bg-red-600 hover:bg-red-700 transition-colors px-4 py-2 rounded text-white" %>
+        </div>
+      <% else %>
+        <div class="space-x-4">
+          <%= link_to "Prijava", new_user_session_path, class: "bg-blue-600 hover:bg-blue-700 transition-colors px-4 py-2 rounded text-white" %>
+          <%= link_to "Registracija", new_user_registration_path, class: "bg-green-600 hover:bg-green-700 transition-colors px-4 py-2 rounded text-white" %>
+        </div>
+      <% end %>
+    </div>
+  </header>
+
+  <!-- Glavni vsebinski del -->
+  <main class="flex-grow container mx-auto px-4 py-10">
+    <!-- Hero sekcija -->
+    <section class="relative mb-12">
+      <div class="absolute inset-0 bg-cover bg-center opacity-70" style="background-image: url('/assets/firefighter-bg.jpg');"></div>
+      <div class="relative z-10 text-center text-white">
+        <h1 class="text-5xl font-extrabold mb-4">Dobrodošli v Prostovoljnem gasilskem društvu Trnava</h1>
+        <p class="text-xl mb-8">Skupaj delamo za varnost naše skupnosti in pomoč v nujnih primerih.</p>
+        <%= link_to "Preberi več", novicas_path, class: "bg-red-600 hover:bg-red-700 transition-colors px-6 py-3 rounded text-white" %>
+      </div>
+    </section>
+
+    <!-- Predstavitvena sekcija -->
+    <section class="grid grid-cols-1 md:grid-cols-3 gap-8">
+      <div class="p-6 bg-white shadow rounded">
+        <h2 class="text-2xl font-bold mb-2">Intervencije</h2>
+        <p>Oglejte si podrobnosti o naših intervencijah in akcijah reševanja.</p>
+        <%= link_to "Več", intervencijas_path, class: "text-red-600 mt-4 inline-block" %>
+      </div>
+      <div class="p-6 bg-white shadow rounded">
+        <h2 class="text-2xl font-bold mb-2">Novice</h2>
+        <p>Aktualne novice in obvestila iz gasilskega delovanja.</p>
+        <%= link_to "Več", novicas_path, class: "text-red-600 mt-4 inline-block" %>
+      </div>
+      <div class="p-6 bg-white shadow rounded">
+        <h2 class="text-2xl font-bold mb-2">Galerija</h2>
+        <p>Poglejte si slikovne in video predstavitve naših aktivnosti.</p>
+        <%= link_to "Več", galerijas_path, class: "text-red-600 mt-4 inline-block" %>
+      </div>
+    </section>
+  </main>
+
+  <!-- Noga -->
+  <footer class="bg-gray-900 text-white py-6">
+    <div class="container mx-auto px-4 text-center">
+      <p>&copy; <%= Time.current.year %> Prostovoljno gasilsko društvo Trnava. Vse pravice pridržane.</p>
+    </div>
+  </footer>
+</div>
