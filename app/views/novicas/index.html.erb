@@ -1,31 +1,124 @@
-<% content_for :title, "Novicas" %>
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>Novicas</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <style>
+      /* Kontejner za vsebino */
+      .container {
+        max-width: 900px;
+        margin: 2rem auto;
+        padding: 1rem;
+      }
 
-<div class="w-full">
-  <% if notice.present? %>
-    <p class="py-2 px-3 bg-green-50 mb-5 text-green-500 font-medium rounded-md inline-block" id="notice"><%= notice %></p>
-  <% end %>
+      /* Stilizacija sporočila (notice) */
+      #notice {
+        padding: 0.5rem 1rem;
+        background-color: #f0fff4; /* svetlo zelena */
+        color: #16a34a;           /* temno zelena */
+        font-weight: 500;
+        border-radius: 0.375rem;
+        margin-bottom: 1rem;
+      }
 
-  <div class="flex justify-between items-center">
-    <h1 class="font-bold text-4xl">Novicas</h1>
-    <%= link_to "New novica", new_novica_path, class: "rounded-md px-3.5 py-2.5 bg-blue-600 hover:bg-blue-500 text-white block font-medium" %>
-  </div>
+      /* Stilizacija glave (header) */
+      .header {
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        margin-bottom: 1rem;
+      }
+      .header h1 {
+        font-size: 2.5rem;
+        font-weight: 700;
+      }
+      .header .btn {
+        padding: 0.5rem 1rem;
+        background-color: #2563eb;
+        color: #fff;
+        border-radius: 0.375rem;
+        text-decoration: none;
+        transition: background-color 0.2s;
+      }
+      .header .btn:hover {
+        background-color: #1e40af;
+      }
 
-  <div id="novicas" class="min-w-full divide-y divide-gray-200 space-y-5">
-    <% if @novicas.any? %>
-      <% @novicas.each do |novica| %>
-        <div class="flex flex-col sm:flex-row justify-between items-center pb-5 sm:pb-0">
-          <%= render novica %>
-          <div class="w-full sm:w-auto flex flex-col sm:flex-row space-x-2 space-y-2">
-            <%= link_to "Show", novica, class: "w-full sm:w-auto text-center rounded-md px-3.5 py-2.5 bg-gray-100 hover:bg-gray-50 inline-block font-medium" %>
-            <%= link_to "Edit", edit_novica_path(novica), class: "w-full sm:w-auto text-center rounded-md px-3.5 py-2.5 bg-gray-100 hover:bg-gray-50 inline-block font-medium" %>
-            <div class="sm:inline-block">
-              <%= button_to "Destroy", novica, method: :delete, class: "w-full sm:w-auto rounded-md px-3.5 py-2.5 text-white bg-red-600 hover:bg-red-500 font-medium cursor-pointer", data: { turbo_confirm: "Are you sure?" } %>
-            </div>
-          </div>
-        </div>
+      /* Stilizacija seznama novic */
+      .news-list {
+        border-top: 1px solid #e5e7eb;
+        margin-top: 1rem;
+      }
+
+      /* Stilizacija posamezne novice */
+      .news-item {
+        padding: 1rem 0;
+        border-bottom: 1px solid #e5e7eb;
+        display: flex;
+        flex-direction: column;
+      }
+      @media(min-width: 640px) {
+        .news-item {
+          flex-direction: row;
+          justify-content: space-between;
+          align-items: center;
+        }
+        .action-buttons {
+          display: flex;
+          gap: 0.5rem;
+        }
+      }
+
+      /* Stilizacija akcijskih gumbov */
+      .action-btn {
+        display: inline-block;
+        padding: 0.5rem 1rem;
+        background-color: #f3f4f6;
+        color: #374151;
+        border-radius: 0.375rem;
+        text-decoration: none;
+        transition: background-color 0.2s;
+      }
+      .action-btn:hover {
+        background-color: #e5e7eb;
+      }
+      /* Poseben stil za gumb za izbris */
+      .action-destroy {
+        background-color: #dc2626;
+        color: #fff;
+      }
+      .action-destroy:hover {
+        background-color: #b91c1c;
+      }
+    </style>
+  </head>
+  <body>
+    <div class="container">
+      <% if notice.present? %>
+        <p id="notice"><%= notice %></p>
       <% end %>
-    <% else %>
-      <p class="text-center my-10">No novicas found.</p>
-    <% end %>
-  </div>
-</div>
+
+      <div class="header">
+        <h1>Novicas</h1>
+        <%= link_to "New novica", new_novica_path, class: "btn" %>
+      </div>
+
+      <div id="novicas" class="news-list">
+        <% if @novicas.any? %>
+          <% @novicas.each do |novica| %>
+            <div class="news-item">
+              <%= render novica %>
+              <div class="action-buttons">
+                <%= link_to "Show", novica, class: "action-btn" %>
+                <%= link_to "Edit", edit_novica_path(novica), class: "action-btn" %>
+                <%= button_to "Destroy", novica, method: :delete, data: { turbo_confirm: "Are you sure?" }, class: "action-btn action-destroy" %>
+              </div>
+            </div>
+          <% end %>
+        <% else %>
+          <p class="text-center my-10">No novicas found.</p>
+        <% end %>
+      </div>
+    </div>
+  </body>
+</html>
