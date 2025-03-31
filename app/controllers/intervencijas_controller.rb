@@ -1,5 +1,6 @@
 class IntervencijasController < ApplicationController
   before_action :authenticate_user!, only: [:new, :create, :edit, :update, :destroy]
+  before_action :set_intervencija, only: [:show, :edit, :update, :destroy]
 
   # GET /intervencijas or /intervencijas.json
   def index
@@ -8,7 +9,7 @@ class IntervencijasController < ApplicationController
 
   # GET /intervencijas/1 or /intervencijas/1.json
   def show
-    @intervencija = Intervencija.find(params[:id])
+    # @intervencija is already set by the before_action
   end
 
   # GET /intervencijas/new
@@ -18,6 +19,7 @@ class IntervencijasController < ApplicationController
 
   # GET /intervencijas/1/edit
   def edit
+    # @intervencija is already set by the before_action
   end
 
   # POST /intervencijas or /intervencijas.json
@@ -51,13 +53,13 @@ class IntervencijasController < ApplicationController
   # DELETE /intervencijas/1 or /intervencijas/1.json
   def destroy
     @intervencija.destroy!
-
     respond_to do |format|
       format.html { redirect_to intervencijas_path, status: :see_other, notice: "Intervencija was successfully destroyed." }
     end
   end
 
   private
+
     # Use callbacks to share common setup or constraints between actions.
     def set_intervencija
       @intervencija = Intervencija.find(params[:id])
@@ -65,6 +67,6 @@ class IntervencijasController < ApplicationController
 
     # Only allow a list of trusted parameters through.
     def intervencija_params
-      params.expect(intervencija: [ :datum, :lokacija, :tip, :kratek_opis, :podrobnejsi_opis ])
+      params.require(:intervencija).permit(:datum, :lokacija, :tip, :kratek_opis, :podrobnejsi_opis)
     end
 end
