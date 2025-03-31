@@ -47,5 +47,5 @@ class GalerijasController < ApplicationController
 
   def galerija_params
     params.require(:galerija).permit(:description, images: [])
-  end
+  end  
 end

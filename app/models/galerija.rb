@@ -1,12 +1,16 @@
 class Galerija < ApplicationRecord
-  belongs_to :gallery_category, optional: true
+  # Odstranite povezavo do kategorij, če je ne potrebujete
+  # belongs_to :gallery_category
+
   has_many_attached :images
 
-  before_validation :set_default_gallery_category, on: :create
+  # Odstranite callback, ker ga ne potrebujete več
+  # before_validation :set_default_gallery_category, on: :create
 
-  private
-
-  def set_default_gallery_category
-    self.gallery_category_id ||= 1
-  end
+  # Če želite še kdaj uporabiti kategorije, lahko ta callback zakomentirate
+  # private
+  #
+  # def set_default_gallery_category
+  #   self.gallery_category_id ||= 1
+  # end
 end
