@@ -1,5 +1,10 @@
-<h1 class="text-3xl font-bold">Dobrodošli na PGD Trnava</h1>
-<p>Prijavite se s svojim uporabniškim imenom in geslom ali uporabite Google prijavo.</p>
-<%= link_to "Prijava", new_user_session_path, class: "btn" %>
-<%= link_to "Registracija", new_user_registration_path, class: "btn" %>
-<%= link_to "Prijava z Google", user_google_oauth2_omniauth_authorize_path, class: "btn btn-google" %>
+<% if user_signed_in? %>
+  <p class="mb-4">Prijavljeni ste kot: <%= current_user.email %></p>
+  <%= link_to "Odjava", destroy_user_session_path, method: :delete, class: "btn" %>
+<% else %>
+  <h1 class="text-3xl font-bold">Dobrodošli na PGD Trnava</h1>
+  <p class="mb-4">Prijavite se s svojim uporabniškim imenom in geslom ali uporabite Google prijavo.</p>
+  <%= link_to "Prijava", new_user_session_path, class: "btn" %>
+  <%= link_to "Registracija", new_user_registration_path, class: "btn" %>
+  <%= link_to "Prijava z Google", user_google_oauth2_omniauth_authorize_path, class: "btn btn-google" %>
+<% end %>
