@@ -17,6 +17,18 @@ gem "stimulus-rails"
 # Build JSON APIs with ease [https://github.com/rails/jbuilder]
 gem "jbuilder"
 
+# Za Tailwind CSS
+gem 'tailwindcss-rails'
+
+# Za OmniAuth Google OAuth2
+gem 'omniauth-google-oauth2'
+
+# Za MySQL (verjetno že obstaja, ker smo ustvarili projekt z --database=mysql)
+gem 'mysql2', '>= 0.5'
+
+# Puma je privzeto nameščen v Rails projektu (v Gemfile je tudi gem 'puma')
+
+
 # Use Active Model has_secure_password [https://guides.rubyonrails.org/active_model_basics.html#securepassword]
 # gem "bcrypt", "~> 3.1.7"
 
