@@ -1,5 +1,5 @@
 class IntervencijasController < ApplicationController
-  before_action :set_intervencija, only: %i[ show edit update destroy ]
+  before_action :authenticate_user!, only: [:new, :create, :edit, :update, :destroy]
 
   # GET /intervencijas or /intervencijas.json
   def index
