@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html>
   <head>
-    <title><%= content_for(:title) || "Pgd Trnava" %></title>
+    <title><%= content_for(:title) || "PGD Trnava" %></title>
     <meta name="viewport" content="width=device-width,initial-scale=1">
     <meta name="apple-mobile-web-app-capable" content="yes">
     <meta name="mobile-web-app-capable" content="yes">
@@ -22,9 +22,42 @@
     <%= javascript_importmap_tags %>
   </head>
 
-  <body>
-    <main class="container mx-auto mt-28 px-5 flex">
+  <body class="flex flex-col min-h-screen">
+    <!-- Glava (Header) -->
+    <header class="bg-white shadow">
+      <div class="container mx-auto px-5 py-4 flex justify-between items-center">
+        <%= link_to "PGD Trnava", root_path, class: "text-3xl font-bold text-red-600" %>
+        <nav>
+          <ul class="flex space-x-6">
+            <li><%= link_to "Domov", root_path, class: "hover:text-red-600" %></li>
+            <li><%= link_to "Novice", novicas_path, class: "hover:text-red-600" %></li>
+            <li><%= link_to "Intervencije", intervencijas_path, class: "hover:text-red-600" %></li>
+            <li><%= link_to "Galerija", galerijas_path, class: "hover:text-red-600" %></li>
+            <% if user_signed_in? %>
+              <li>
+                <%= button_to "Odjava", destroy_user_session_path,
+                  method: :delete,
+                  data: { confirm: "Ste prepričani?" },
+                  class: "bg-red-600 hover:bg-red-700 transition-colors text-white px-4 py-2 rounded" %>
+              </li>
+            <% else %>
+              <li><%= link_to "Prijava", new_user_session_path, class: "hover:text-red-600" %></li>
+            <% end %>
+          </ul>
+        </nav>
+      </div>
+    </header>
+
+    <!-- Glavni vsebinski del -->
+    <main class="container mx-auto flex-grow mt-28 px-5">
       <%= yield %>
     </main>
+
+    <!-- Noga (Footer) -->
+    <footer class="bg-gray-900 text-white py-6">
+      <div class="container mx-auto px-5 text-center">
+        <p>&copy; <%= Time.current.year %> PGD Trnava. Vse pravice pridržane.</p>
+      </div>
+    </footer>
   </body>
 </html>
