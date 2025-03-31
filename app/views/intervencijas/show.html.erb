@@ -1,17 +1,81 @@
 <% content_for :title, "Showing intervencija" %>
 
-<div class="md:w-2/3 w-full">
+<!-- Custom CSS (you can move this to your external stylesheet) -->
+<style>
+  .intervencija-container {
+    max-width: 800px;
+    margin: 0 auto;
+    padding: 1rem;
+  }
+  
+  .intervencija-heading {
+    font-size: 2.25rem;  /* equivalent to Tailwind's text-4xl */
+    font-weight: 700;
+    margin-bottom: 1rem;
+    text-align: center;
+  }
+  
+  .notice-message {
+    padding: 0.5rem 1rem;
+    background-color: #f0fdf4;  /* light green */
+    color: #065f46;             /* green-700 */
+    font-weight: 500;
+    border-radius: 0.375rem;
+    margin-bottom: 1.25rem;
+    text-align: center;
+  }
+  
+  .intervencija-actions {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 1rem;
+    justify-content: center;
+    margin-top: 1rem;
+  }
+  
+  .intervencija-link {
+    padding: 0.75rem 1rem;
+    border-radius: 0.375rem;
+    background-color: #f3f4f6; /* gray-100 */
+    text-align: center;
+    font-weight: 500;
+    transition: background-color 0.3s ease;
+    text-decoration: none;
+    color: inherit;
+  }
+  
+  .intervencija-link:hover {
+    background-color: #e5e7eb; /* gray-50 */
+  }
+  
+  .destroy-button {
+    background-color: #dc2626;  /* red-600 */
+    color: #fff;
+    border: none;
+    padding: 0.75rem 1rem;
+    border-radius: 0.375rem;
+    cursor: pointer;
+    font-weight: 500;
+    transition: background-color 0.3s ease;
+  }
+  
+  .destroy-button:hover {
+    background-color: #b91c1c;  /* red-500 */
+  }
+</style>
+
+<div class="intervencija-container">
   <% if notice.present? %>
-    <p class="py-2 px-3 bg-green-50 mb-5 text-green-500 font-medium rounded-md inline-block" id="notice"><%= notice %></p>
+    <p class="notice-message" id="notice"><%= notice %></p>
   <% end %>
 
-  <h1 class="font-bold text-4xl">Showing intervencija</h1>
+  <h1 class="intervencija-heading">Showing intervencija</h1>
 
   <%= render @intervencija %>
 
-  <%= link_to "Edit this intervencija", edit_intervencija_path(@intervencija), class: "w-full sm:w-auto text-center rounded-md px-3.5 py-2.5 bg-gray-100 hover:bg-gray-50 inline-block font-medium" %>
-  <%= link_to "Back to intervencijas", intervencijas_path, class: "w-full sm:w-auto text-center mt-2 sm:mt-0 sm:ml-2 rounded-md px-3.5 py-2.5 bg-gray-100 hover:bg-gray-50 inline-block font-medium" %>
-  <div class="sm:inline-block mt-2 sm:mt-0 sm:ml-2">
-    <%= button_to "Destroy this intervencija", @intervencija, method: :delete, class: "w-full rounded-md px-3.5 py-2.5 text-white bg-red-600 hover:bg-red-500 font-medium cursor-pointer", data: { turbo_confirm: "Are you sure?" } %>
+  <div class="intervencija-actions">
+    <%= link_to "Edit this intervencija", edit_intervencija_path(@intervencija), class: "intervencija-link" %>
+    <%= link_to "Back to intervencijas", intervencijas_path, class: "intervencija-link" %>
+    <%= button_to "Destroy this intervencija", @intervencija, method: :delete, class: "destroy-button", data: { turbo_confirm: "Are you sure?" } %>
   </div>
 </div>
