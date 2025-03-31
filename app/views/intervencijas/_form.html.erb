@@ -84,44 +84,51 @@
 </style>
 
 <%# Begin the form %>
-<%= form_with(model: intervencija, html: { class: "form-container" }) do |form| %>
+<%= form_with(model: intervencija, class: "contents") do |form| %>
   <% if intervencija.errors.any? %>
-    <div id="error_explanation" class="error-explanation">
+    <div id="error_explanation" class="bg-red-50 text-red-500 px-3 py-2 font-medium rounded-md mt-3">
       <h2><%= pluralize(intervencija.errors.count, "error") %> prohibited this intervencija from being saved:</h2>
-      <ul>
-        <% intervencija.errors.full_messages.each do |message| %>
-          <li><%= message %></li>
+      <ul class="list-disc ml-6">
+        <% intervencija.errors.full_messages.each do |msg| %>
+          <li><%= msg %></li>
         <% end %>
       </ul>
     </div>
   <% end %>
 
-  <div class="form-group">
-    <%= form.label :datum, class: "form-label" %>
-    <%= form.datetime_field :datum, class: "form-input #{'form-error' if intervencija.errors[:datum].any?}" %>
+  <!-- Other fields like datum, lokacija, etc. -->
+  <div class="my-5">
+    <%= form.label :datum %>
+    <%= form.datetime_field :datum, class: "block shadow-sm rounded-md border px-3 py-2 mt-2 w-full" %>
   </div>
 
-  <div class="form-group">
-    <%= form.label :lokacija, class: "form-label" %>
-    <%= form.text_field :lokacija, class: "form-input #{'form-error' if intervencija.errors[:lokacija].any?}" %>
+  <div class="my-5">
+    <%= form.label :lokacija %>
+    <%= form.text_field :lokacija, class: "block shadow-sm rounded-md border px-3 py-2 mt-2 w-full" %>
   </div>
 
-  <div class="form-group">
-    <%= form.label :tip, class: "form-label" %>
-    <%= form.text_field :tip, class: "form-input #{'form-error' if intervencija.errors[:tip].any?}" %>
+  <div class="my-5">
+    <%= form.label :tip %>
+    <%= form.text_field :tip, class: "block shadow-sm rounded-md border px-3 py-2 mt-2 w-full" %>
   </div>
 
-  <div class="form-group">
-    <%= form.label :kratek_opis, class: "form-label" %>
-    <%= form.textarea :kratek_opis, rows: 4, class: "form-textarea #{'form-error' if intervencija.errors[:kratek_opis].any?}" %>
+  <div class="my-5">
+    <%= form.label :kratek_opis %>
+    <%= form.textarea :kratek_opis, rows: 4, class: "block shadow-sm rounded-md border px-3 py-2 mt-2 w-full" %>
   </div>
 
-  <div class="form-group">
-    <%= form.label :podrobnejsi_opis, class: "form-label" %>
-    <%= form.textarea :podrobnejsi_opis, rows: 4, class: "form-textarea #{'form-error' if intervencija.errors[:podrobnejsi_opis].any?}" %>
+  <div class="my-5">
+    <%= form.label :podrobnejsi_opis %>
+    <%= form.textarea :podrobnejsi_opis, rows: 4, class: "block shadow-sm rounded-md border px-3 py-2 mt-2 w-full" %>
   </div>
 
-  <div class="form-group">
-    <%= form.submit "Submit", class: "form-submit" %>
+  <!-- New field: Images -->
+  <div class="my-5">
+    <%= form.label :images, "Attach Images" %>
+    <%= form.file_field :images, multiple: true, class: "block shadow-sm rounded-md border px-3 py-2 mt-2 w-full" %>
+  </div>
+
+  <div class="inline">
+    <%= form.submit class: "w-full sm:w-auto rounded-md px-3.5 py-2.5 bg-blue-600 hover:bg-blue-500 text-white inline-block font-medium cursor-pointer" %>
   </div>
 <% end %>

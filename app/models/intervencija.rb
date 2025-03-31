@@ -1,2 +1,5 @@
 class Intervencija < ApplicationRecord
-end
+    has_many_attached :images
+    # ... any other model code
+  end
+  

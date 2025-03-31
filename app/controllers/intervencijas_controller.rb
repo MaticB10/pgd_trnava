@@ -67,6 +67,7 @@ class IntervencijasController < ApplicationController
 
     # Only allow a list of trusted parameters through.
     def intervencija_params
-      params.require(:intervencija).permit(:datum, :lokacija, :tip, :kratek_opis, :podrobnejsi_opis)
+      params.require(:intervencija).permit(:datum, :lokacija, :tip, :kratek_opis, :podrobnejsi_opis, images: [])
     end
+    
 end
