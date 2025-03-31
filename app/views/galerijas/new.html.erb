@@ -1,9 +1,19 @@
-<% content_for :title, "New galerija" %>
+<h1 class="text-3xl font-bold mb-4">Naloži novo galerijo</h1>
 
-<div class="md:w-2/3 w-full">
-  <h1 class="font-bold text-4xl">New galerija</h1>
+<%= form_with model: @galerija, local: true do |f| %>
+  <div class="mb-4">
+    <%= f.label :description, "Opis (neobvezno)" %>
+    <%= f.text_area :description, class: "w-full p-2 border rounded" %>
+  </div>
 
-  <%= render "form", galerija: @galerija %>
+  <div class="mb-4">
+    <%= f.label :images, "Izberi slike" %>
+    <%= f.file_field :images, multiple: true, class: "w-full" %>
+  </div>
 
-  <%= link_to "Back to galerijas", galerijas_path, class: "w-full sm:w-auto text-center mt-2 sm:mt-0 sm:ml-2 rounded-md px-3.5 py-2.5 bg-gray-100 hover:bg-gray-50 inline-block font-medium" %>
-</div>
+  <div>
+    <%= f.submit "Naloži galerijo", class: "bg-blue-600 hover:bg-blue-700 text-white px-4 py-2 rounded" %>
+  </div>
+<% end %>
+
+<%= link_to "Nazaj na galerije", galerijas_path, class: "mt-4 inline-block" %>
