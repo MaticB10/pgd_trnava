@@ -7,13 +7,15 @@
 <% if @galerijas.any? %>
   <div class="grid grid-cols-1 md:grid-cols-3 gap-4 mt-4">
     <% @galerijas.each do |galerija| %>
-      <div class="bg-white rounded shadow p-4">
+      <div>
+        <p><%= galerija.description %></p>
         <% if galerija.images.attached? %>
-          <%= link_to image_tag(galerija.images.first.variant(resize_to_fill: [300,200]), class: "w-full rounded"), galerija_path(galerija) %>
+          <% galerija.images.each do |img| %>
+            <%= image_tag img.variant(resize_to_limit: [300,200]), class: "rounded" %>
+          <% end %>
         <% else %>
           <p>Ni slik.</p>
         <% end %>
-        <p class="mt-2"><%= truncate(galerija.description, length: 50) %></p>
       </div>
     <% end %>
   </div>

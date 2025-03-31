@@ -1,5 +1,5 @@
 class Galerija < ApplicationRecord
-  belongs_to :gallery_category
+  belongs_to :gallery_category, optional: true
   has_many_attached :images
 
   before_validation :set_default_gallery_category, on: :create
