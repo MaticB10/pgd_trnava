@@ -10,53 +10,64 @@
 
     <%= yield :head %>
 
-    <%# Enable PWA manifest for installable apps (make sure to enable in config/routes.rb too!) %>
-    <%#= tag.link rel: "manifest", href: pwa_manifest_path(format: :json) %>
-
+    <!-- Ikone, favicons, ipd. -->
     <link rel="icon" href="/icon.png" type="image/png">
     <link rel="icon" href="/icon.svg" type="image/svg+xml">
     <link rel="apple-touch-icon" href="/icon.png">
 
-    <%# Includes all stylesheet files in app/assets/stylesheets %>
+    <!-- Glavni CSS in JavaScript -->
     <%= stylesheet_link_tag :app, "data-turbo-track": "reload" %>
     <%= javascript_importmap_tags %>
   </head>
 
-  <body class="flex flex-col min-h-screen">
+  <!-- Glavni body z osnovnim sivo-belim ozadjem -->
+  <body class="flex flex-col min-h-screen bg-gray-100 text-gray-800">
     <!-- Glava (Header) -->
-    <header class="bg-white shadow">
-      <div class="container mx-auto px-5 py-4 flex justify-between items-center">
-        <%= link_to "PGD Trnava", root_path, class: "text-3xl font-bold text-red-600" %>
+    <header class="bg-gray-800 text-white">
+      <div class="container mx-auto px-6 py-4 flex items-center justify-between">
+        <!-- Logotip / Naziv PGD -->
+        <%= link_to "PGD Trnava", root_path, class: "text-2xl font-bold hover:text-gray-200" %>
+
+        <!-- Navigacija -->
         <nav>
-          <ul class="flex space-x-6">
-            <li><%= link_to "Domov", root_path, class: "hover:text-red-600" %></li>
-            <li><%= link_to "Novice", novicas_path, class: "hover:text-red-600" %></li>
-            <li><%= link_to "Intervencije", intervencijas_path, class: "hover:text-red-600" %></li>
-            <li><%= link_to "Galerija", galerijas_path, class: "hover:text-red-600" %></li>
+          <ul class="flex space-x-4">
+            <li><%= link_to "Domov", root_path, class: "hover:text-gray-300" %></li>
+            <li><%= link_to "Novice", novicas_path, class: "hover:text-gray-300" %></li>
+            <li><%= link_to "Intervencije", intervencijas_path, class: "hover:text-gray-300" %></li>
+            <li><%= link_to "Galerija", galerijas_path, class: "hover:text-gray-300" %></li>
             <% if user_signed_in? %>
               <li>
+                <!-- Odjava preko button_to -->
                 <%= button_to "Odjava", destroy_user_session_path,
                   method: :delete,
                   data: { confirm: "Ste prepričani?" },
                   class: "bg-red-600 hover:bg-red-700 transition-colors text-white px-4 py-2 rounded" %>
               </li>
             <% else %>
-              <li><%= link_to "Prijava", new_user_session_path, class: "hover:text-red-600" %></li>
+              <li><%= link_to "Prijava", new_user_session_path, class: "hover:text-gray-300" %></li>
             <% end %>
           </ul>
         </nav>
       </div>
     </header>
 
-    <!-- Glavni vsebinski del -->
-    <main class="container mx-auto flex-grow mt-28 px-5">
+    <!-- Hero sekcija (opcijsko) -->
+    <!-- Če ne želite hero sekcije, jo lahko izbrišete ali prilagodite -->
+    <section class="relative bg-cover bg-center h-64" style="background-image: url('/assets/firefighter-bg.jpg');">
+      <div class="absolute inset-0 bg-black bg-opacity-40 flex items-center justify-center">
+        <h1 class="text-3xl md:text-4xl font-bold text-white">Dobrodošli v PGD Trnava</h1>
+      </div>
+    </section>
+
+    <!-- Glavni vsebinski del (Main) -->
+    <main class="container mx-auto flex-grow px-6 py-8">
       <%= yield %>
     </main>
 
     <!-- Noga (Footer) -->
-    <footer class="bg-gray-900 text-white py-6">
-      <div class="container mx-auto px-5 text-center">
-        <p>&copy; <%= Time.current.year %> PGD Trnava. Vse pravice pridržane.</p>
+    <footer class="bg-gray-900 text-white py-4">
+      <div class="container mx-auto px-6 text-center">
+        <p class="text-sm">&copy; <%= Time.current.year %> Prostovoljno gasilsko društvo Trnava. Vse pravice pridržane.</p>
       </div>
     </footer>
   </body>
