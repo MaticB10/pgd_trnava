@@ -1,6 +1,6 @@
 <% if user_signed_in? %>
   <p class="mb-4">Prijavljeni ste kot: <%= current_user.email %></p>
-  <%= link_to "Odjava", destroy_user_session_path, method: :delete, class: "btn" %>
+  <%= link_to "Odjava", destroy_user_session_path, method: :delete, data: { confirm: "Ste prepričani?" }, class: "btn" %>
 <% else %>
   <h1 class="text-3xl font-bold">Dobrodošli na PGD Trnava</h1>
   <p class="mb-4">Prijavite se s svojim uporabniškim imenom in geslom ali uporabite Google prijavo.</p>
