@@ -17,11 +17,11 @@ test:
 production:
   <<: *default
   database: pgd_trnava_production
-  username: <%= ENV['PGD_TRNAVA_DATABASE_USERNAME'] %>
-  password: <%= ENV['PGD_TRNAVA_DATABASE_PASSWORD'] %>
+  username: matic
+  password: 'Nogomet2015!'
 
   queue:
     <<: *default
     database: pgd_trnava_production
-    username: <%= ENV['PGD_TRNAVA_DATABASE_USERNAME'] %>
-    password: <%= ENV['PGD_TRNAVA_DATABASE_PASSWORD'] %>
+    username: matic
+    password: 'Nogomet2015!'
