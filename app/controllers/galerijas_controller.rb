@@ -1,5 +1,7 @@
 class GalerijasController < ApplicationController
-  before_action :authenticate_user!
+  def index
+    @galerijas = Galerija.all
+  end
 
   def new
     @galerija = Galerija.new
