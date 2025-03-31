@@ -1,45 +1,15 @@
 <!-- app/views/home/index.html.erb -->
-<main class="flex-grow container mx-auto px-4 py-10">
-  <!-- Hero sekcija -->
-  <section class="relative mb-12">
-    <!-- Ozadinska slika, ki se pokrije z rahlo prosojnostjo -->
-    <div class="absolute inset-0 bg-cover bg-center opacity-70");"></div>
-    <div class="relative z-10 text-center text-white">
-      <h1 class="text-5xl font-extrabold mb-4">
-        Dobrodošli v Prostovoljnem gasilskem društvu Trnava
-      </h1>
-      <p class="text-xl mb-8">
-        Skupaj delamo za varnost naše skupnosti in pomoč v nujnih primerih.
-      </p>
-      <%= link_to "Preberi več", novicas_path, class: "bg-red-600 hover:bg-red-700 transition-colors px-6 py-3 rounded text-white" %>
-    </div>
-  </section>
-
-  <!-- Predstavitvena sekcija -->
-  <section class="grid grid-cols-1 md:grid-cols-3 gap-8">
-    <!-- Intervencije -->
-    <div class="p-6 bg-white shadow rounded">
-      <h2 class="text-2xl font-bold mb-2">Intervencije</h2>
-      <p>
-        Oglejte si podrobnosti o naših intervencijah in akcijah reševanja.
-      </p>
-      <%= link_to "Več", intervencijas_path, class: "text-red-600 mt-4 inline-block" %>
-    </div>
-    <!-- Novice -->
-    <div class="p-6 bg-white shadow rounded">
-      <h2 class="text-2xl font-bold mb-2">Novice</h2>
-      <p>
-        Aktualne novice in obvestila iz gasilskega delovanja.
-      </p>
-      <%= link_to "Več", novicas_path, class: "text-red-600 mt-4 inline-block" %>
-    </div>
-    <!-- Galerija -->
-    <div class="p-6 bg-white shadow rounded">
-      <h2 class="text-2xl font-bold mb-2">Galerija</h2>
-      <p>
-        Poglejte si slikovne in video predstavitve naših aktivnosti.
-      </p>
-      <%= link_to "Več", galerijas_path, class: "text-red-600 mt-4 inline-block" %>
-    </div>
-  </section>
-</main>
+<div class="min-h-screen bg-gray-100 flex items-center justify-center">
+  <div class="text-center">
+    <h1 class="text-5xl font-bold text-blue-600 mb-4 animate-fadeIn">
+      Dobrodošli na spletni strani Prostovoljnega gasilskega društva Trnava
+    </h1>
+    <p class="text-lg text-gray-700 mb-8">
+      Smo skupnost predanih prostovoljcev, ki služijo in varujejo naše okolje.
+      Spoznajte naše aktivnosti, intervencije in novice.
+    </p>
+    <a href="/novice" class="px-6 py-3 bg-blue-500 text-white rounded hover:bg-blue-600 transition duration-300">
+      Preberi več
+    </a>
+  </div>
+</div>
