@@ -20,6 +20,9 @@ gem "jbuilder"
 # Za Tailwind CSS
 gem 'tailwindcss-rails'
 
+# Avtentikacija
+gem 'devise'
+
 # Za OmniAuth Google OAuth2
 gem 'omniauth-google-oauth2'
 
