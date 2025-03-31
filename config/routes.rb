@@ -5,6 +5,7 @@ Rails.application.routes.draw do
   
     # Admin panel za novice, intervencije in kategorije galerije
     namespace :admin do
+      root "dashboard#index" 
       resources :novicas      # Novice
       resources :intervencijas # Intervencije
       resources :gallery_categories  # Kategorije slik
