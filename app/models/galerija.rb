@@ -1,0 +1,2 @@
+class Galerija < ApplicationRecord
+end

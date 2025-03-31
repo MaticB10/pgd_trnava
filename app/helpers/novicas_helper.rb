@@ -1,0 +1,2 @@
+module NovicasHelper
+end

@@ -1,4 +1,5 @@
 Rails.application.routes.draw do
+  resources :gallery_categories
   get "home/index"
   root "home#index"
 

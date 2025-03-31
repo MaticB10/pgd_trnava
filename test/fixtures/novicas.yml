@@ -1,0 +1,11 @@
+# Read about fixtures at https://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
+
+one:
+  naslov: MyString
+  vsebina: MyText
+  datum: 2025-03-31 08:55:56
+
+two:
+  naslov: MyString
+  vsebina: MyText
+  datum: 2025-03-31 08:55:56
