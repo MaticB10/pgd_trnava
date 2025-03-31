@@ -2,9 +2,9 @@ default: &default
   adapter: mysql2
   encoding: utf8
   pool: <%= ENV.fetch("RAILS_MAX_THREADS") { 5 } %>
-  username: matic
-  password: "Nogomet2015!"
-  host: 78.47.245.88
+  username: matic            # uporabniško ime za MySQL
+  password: "Nogomet2015!"    # geslo
+  host: 78.47.245.88          # IP strežnika
 
 development:
   <<: *default
@@ -16,8 +16,7 @@ test:
 
 production:
   <<: *default
-  database: pgd_trnava_development
+  database: pgd_trnava_production
+  username: <%= ENV['PGD_TRNAVA_DATABASE_USERNAME'] %>
+  password: <%= ENV['PGD_TRNAVA_DATABASE_PASSWORD'] %>
 
-  queue:
-    <<: *default
-    database: pgd_trnava_development
