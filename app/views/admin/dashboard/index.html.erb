@@ -1,7 +1,15 @@
-<h1 class="text-3xl font-bold mb-4">Admin Panel</h1>
-<p>Dobrodošli v admin panelu. Tukaj lahko upravljate novice, intervencije in kategorije slik.</p>
-<ul class="list-disc pl-6 mt-4">
-  <li><%= link_to "Upravljanje novic", admin_novicas_path, class: "text-blue-600 hover:underline" %></li>
-  <li><%= link_to "Upravljanje intervencij", admin_intervencijas_path, class: "text-blue-600 hover:underline" %></li>
-  <li><%= link_to "Upravljanje kategorij slik", admin_gallery_categories_path, class: "text-blue-600 hover:underline" %></li>
-</ul>
+<h1>Admin Dashboard - Pending Users</h1>
+
+<% if @pending_users.any? %>
+  <ul>
+    <% @pending_users.each do |user| %>
+      <li>
+        <%= user.username %> - <%= user.email %>
+        <%= button_to "Approve", approve_admin_user_path(user), method: :patch, class: "btn btn-green" %>
+        <%= button_to "Reject", reject_admin_user_path(user), method: :patch, class: "btn btn-red", data: { confirm: "Are you sure?" } %>
+      </li>
+    <% end %>
+  </ul>
+<% else %>
+  <p>No pending users.</p>
+<% end %>
