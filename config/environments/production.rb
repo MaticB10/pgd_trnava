@@ -80,10 +80,12 @@ Rails.application.configure do
   config.active_record.attributes_for_inspect = [ :id ]
 
   # Enable DNS rebinding protection and other `Host` header attacks.
-  config.hosts = [
-    "pgd-trnava.eu",     # Allow requests from example.com
-    /.*\.pgd-trnava\.eu/ # Allow requests from subdomains like `www.example.com`
+  config.hosts += [
+    "pgd-trnava.eu",
+    "www.pgd-trnava.eu",
+    /.*\.pgd-trnava\.eu/
   ]
+  
   #
   # Skip DNS rebinding protection for the default health check endpoint.
   # config.host_authorization = { exclude: ->(request) { request.path == "/up" } }
