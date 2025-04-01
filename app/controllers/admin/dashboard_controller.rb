@@ -3,7 +3,7 @@ class Admin::DashboardController < ApplicationController
   before_action :require_admin
 
   def index
-    @pending_users = User.where(approved: NULL)
+    @pending_users = User.where(approved: 0)
   end
 
   private
