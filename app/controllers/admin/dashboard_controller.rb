@@ -8,10 +8,7 @@ class Admin::DashboardController < ApplicationController
 
   private
 
-  def ensure_admin
-    # Preveri, da je trenutni uporabnik administrator
-    unless current_user.username == "admin"
-      redirect_to root_path, alert: "Access denied."
-    end
+  def require_admin
+    redirect_to root_path, alert: "Dostop ni dovoljen." unless current_user.username == "admin"
   end
 end
