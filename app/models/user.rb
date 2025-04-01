@@ -16,6 +16,10 @@ class User < ApplicationRecord
     user
   end
 
+  def approved?
+    self.approved # predpostavlja, da imaš boolean polje :approved v users tabeli
+  end
+
   def active_for_authentication?
     super && approved?
   end
