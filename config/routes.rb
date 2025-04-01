@@ -14,6 +14,7 @@ Rails.application.routes.draw do
         patch :reject
       end
     end
+  end
   
     # Funkcionalnost za redne uporabnike – nalaganje slik v galerijo
     resources :galerijas, only: [:index, :show, :new, :create, :edit, :update, :destroy]
