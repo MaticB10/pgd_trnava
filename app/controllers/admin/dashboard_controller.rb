@@ -3,7 +3,6 @@ class Admin::DashboardController < ApplicationController
   before_action :require_admin
 
   def index
-    # Prikaži uporabnike, ki čakajo na odobritev
     @pending_users = User.where(approved: false)
   end
 

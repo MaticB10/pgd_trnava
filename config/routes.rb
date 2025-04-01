@@ -3,14 +3,15 @@ Rails.application.routes.draw do
   
     devise_for :users, controllers: { omniauth_callbacks: 'users/omniauth_callbacks' }
   
-    # Admin panel za novice, intervencije in kategorije galerije
-    namespace :admin do
-      resources :dashboard, only: [:index]
-      resources :users, only: [] do
-        member do
-          patch :approve
-          patch :reject
-        end
+  # Dodaj novo pot za admin dashboard, ki se usmerja v Admin::DashboardController#index
+  get '/dashboard', to: 'admin/dashboard#index', as: :dashboard
+
+  namespace :admin do
+    resources :dashboard, only: [:index]
+    resources :users, only: [] do
+      member do
+        patch :approve
+        patch :reject
       end
     end
   
