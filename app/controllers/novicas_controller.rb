@@ -22,14 +22,13 @@ class NovicasController < ApplicationController
   # POST /novicas or /novicas.json
   def create
     @novica = Novica.new(novica_params)
+    
 
     respond_to do |format|
       if @novica.save
-        format.html { redirect_to @novica, notice: "Novica was successfully created." }
-        format.json { render :show, status: :created, location: @novica }
+        redirect_to "https://www.pgd-trnava.eu/novicas", notice: "Novica was successfully created."
       else
-        format.html { render :new, status: :unprocessable_entity }
-        format.json { render json: @novica.errors, status: :unprocessable_entity }
+        render :new, status: :unprocessable_entity
       end
     end
   end
