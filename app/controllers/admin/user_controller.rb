@@ -4,7 +4,7 @@ class Admin::UsersController < ApplicationController
   
     def approve
       user = User.find(params[:id])
-      user.update(approved: true)
+      user.update(approved: 1)
       redirect_to admin_dashboard_index_path, notice: "#{user.username} has been approved."
     end
   
