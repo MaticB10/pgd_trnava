@@ -26,7 +26,7 @@ class NovicasController < ApplicationController
 
     respond_to do |format|
       if @novica.save
-        redirect_to "https://www.pgd-trnava.eu/novicas", notice: "Novica was successfully created."
+        redirect_to "https://pgd-trnava.eu/novicas", notice: "Novica was successfully created."
       else
         render :new, status: :unprocessable_entity
       end
