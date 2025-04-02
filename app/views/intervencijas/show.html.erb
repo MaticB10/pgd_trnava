@@ -1,96 +1,128 @@
-<% content_for :title, "Showing intervencija" %>
-
-<!-- Custom CSS (you can move this to your external stylesheet) -->
-<style>
-  .intervencija-container {
-    max-width: 800px;
-    margin: 0 auto;
-    padding: 1rem;
-  }
-  
-  .intervencija-heading {
-    font-size: 2.25rem;  /* equivalent to Tailwind's text-4xl */
-    font-weight: 700;
-    margin-bottom: 1rem;
-    text-align: center;
-  }
-  
-  .notice-message {
-    padding: 0.5rem 1rem;
-    background-color: #f0fdf4;  /* light green */
-    color: #065f46;             /* green-700 */
-    font-weight: 500;
-    border-radius: 0.375rem;
-    margin-bottom: 1.25rem;
-    text-align: center;
-  }
-  
-  .intervencija-actions {
-    display: flex;
-    flex-wrap: wrap;
-    gap: 1rem;
-    justify-content: center;
-    margin-top: 1rem;
-  }
-  
-  .intervencija-link {
-    padding: 0.75rem 1rem;
-    border-radius: 0.375rem;
-    background-color: #f3f4f6; /* gray-100 */
-    text-align: center;
-    font-weight: 500;
-    transition: background-color 0.3s ease;
-    text-decoration: none;
-    color: inherit;
-  }
-  
-  .intervencija-link:hover {
-    background-color: #e5e7eb; /* gray-50 */
-  }
-  
-  .destroy-button {
-    background-color: #dc2626;  /* red-600 */
-    color: #fff;
-    border: none;
-    padding: 0.75rem 1rem;
-    border-radius: 0.375rem;
-    cursor: pointer;
-    font-weight: 500;
-    transition: background-color 0.3s ease;
-  }
-  
-  .destroy-button:hover {
-    background-color: #b91c1c;  /* red-500 */
-  }
-</style>
-
-<% content_for :title, "Showing intervencija" %>
-
-<div class="md:w-2/3 w-full mx-auto p-4">
-  <% if notice.present? %>
-    <p class="py-2 px-3 bg-green-50 mb-5 text-green-500 font-medium rounded-md inline-block" id="notice">
-      <%= notice %>
-    </p>
-  <% end %>
-
-  <h1 class="font-bold text-4xl mb-4">Showing intervencija</h1>
-
-  <!-- Display the intervention details -->
-  <%= render @intervencija %>
-
-  <!-- Display attached images -->
-  <% if @intervencija.images.attached? %>
-    <div class="grid grid-cols-1 md:grid-cols-2 gap-4 mt-4">
-      <% @intervencija.images.each do |image| %>
-        <%= image_tag image.variant(resize_to_limit: [400, 400]), class: "rounded-md shadow" %>
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>Showing intervencija</title>
+    <style>
+      /* Kontejner strani */
+      .intervencija-container {
+        max-width: 800px;
+        margin: 0 auto;
+        padding: 1rem;
+      }
+      
+      /* Notice sporočilo */
+      .notice-message {
+        padding: 0.5rem 1rem;
+        background-color: #f0fff4; /* svetlo zelena */
+        color: #065f46;            /* temno zelena */
+        font-weight: 500;
+        border-radius: 0.375rem;
+        margin-bottom: 1.25rem;
+        text-align: center;
+      }
+      
+      /* Naslov */
+      .intervencija-heading {
+        font-size: 2.25rem; /* text-4xl */
+        font-weight: 700;
+        margin-bottom: 1rem;
+        text-align: center;
+      }
+      
+      /* Razporeditev slik */
+      .images-grid {
+        display: grid;
+        grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
+        gap: 1rem;
+        margin-top: 1rem;
+      }
+      
+      .images-grid img {
+        width: 100%;
+        height: auto;
+        border-radius: 0.375rem;
+        box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+      }
+      
+      /* Akcijski gumbi */
+      .action-buttons {
+        display: flex;
+        flex-wrap: wrap;
+        gap: 1rem;
+        justify-content: center;
+        margin-top: 1rem;
+      }
+      
+      .action-link {
+        display: inline-block;
+        padding: 0.75rem 1rem;
+        border-radius: 0.375rem;
+        background-color: #f3f4f6;
+        text-align: center;
+        font-weight: 500;
+        text-decoration: none;
+        color: #374151;
+        transition: background-color 0.3s ease;
+      }
+      
+      .action-link:hover {
+        background-color: #e5e7eb;
+      }
+      
+      .destroy-button {
+        background-color: #dc2626;
+        color: #fff;
+        border: none;
+        padding: 0.75rem 1rem;
+        border-radius: 0.375rem;
+        cursor: pointer;
+        font-weight: 500;
+        transition: background-color 0.3s ease;
+      }
+      
+      .destroy-button:hover {
+        background-color: #b91c1c;
+      }
+      
+      /* Responsive padding in case Tailwind razredov nimate */
+      @media (min-width: 640px) {
+        .container-padding {
+          padding: 2rem;
+        }
+      }
+    </style>
+  </head>
+  <body>
+    <div class="intervencija-container container-padding">
+      <% if notice.present? %>
+        <p id="notice" class="notice-message"><%= notice %></p>
       <% end %>
+
+      <h1 class="intervencija-heading">Showing intervencija</h1>
+
+      <!-- Prikaz podrobnosti o intervenciji -->
+      <div class="intervencija-details">
+        <%= render @intervencija %>
+      </div>
+
+      <!-- Prikaz priloženih slik, če obstajajo -->
+      <% if @intervencija.images.attached? %>
+        <div class="images-grid">
+          <% @intervencija.images.each do |image| %>
+            <%= image_tag image.variant(resize_to_limit: [400, 400]), alt: "Intervencija image" %>
+          <% end %>
+        </div>
+      <% else %>
+        <p class="text-center" style="margin-top: 1rem; color: #6b7280;">No images attached.</p>
+      <% end %>
+
+      <!-- Akcijski gumbi za navigacijo -->
+      <div class="action-buttons">
+        <%= link_to "Back to intervencijas", intervencijas_path, class: "action-link" %>
+        <%= link_to "Edit this intervencija", edit_intervencija_path(@intervencija), class: "action-link" %>
+        <%= button_to "Destroy this intervencija", @intervencija, method: :delete, data: { turbo_confirm: "Are you sure?" }, class: "destroy-button" %>
+      </div>
     </div>
-  <% else %>
-    <p class="mt-4 text-center text-gray-500">No images attached.</p>
-  <% end %>
-
-  <div class="flex flex-wrap gap-4 mt-6">
-    <%= link_to "Back to intervencijas", intervencijas_path, class: "w-full sm:w-auto text-center mt-2 sm:mt-0 sm:ml-2 rounded-md px-3.5 py-2.5 bg-gray-100 hover:bg-gray-50 inline-block font-medium" %>
-  </div>
-</div>
-
+  </body>
+</html>
