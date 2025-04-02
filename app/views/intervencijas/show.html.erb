@@ -120,8 +120,10 @@
       <!-- Akcijski gumbi za navigacijo -->
       <div class="action-buttons">
         <%= link_to "Back to intervencijas", intervencijas_path, class: "action-link" %>
-        <%= link_to "Edit this intervencija", edit_intervencija_path(@intervencija), class: "action-link" %>
-        <%= button_to "Destroy this intervencija", @intervencija, method: :delete, data: { turbo_confirm: "Are you sure?" }, class: "destroy-button" %>
+        <% if user_signed_in? %>
+          <%= link_to "Edit this intervencija", edit_intervencija_path(@intervencija), class: "action-link" %>
+          <%= button_to "Destroy this intervencija", @intervencija, method: :delete, data: { turbo_confirm: "Are you sure?" }, class: "destroy-button" %>
+        <% end %>
       </div>
     </div>
   </body>
