@@ -100,7 +100,9 @@
 
       <div class="header">
         <h1>Novicas</h1>
-        <%= link_to "New novica", new_novica_path, class: "btn" %>
+        <% if user_signed_in? %>
+          <%= link_to "New novica", new_novica_path, class: "btn" %>
+        <% end %>
       </div>
 
       <div id="novicas" class="news-list">
@@ -110,8 +112,10 @@
               <%= render novica %>
               <div class="action-buttons">
                 <%= link_to "Show", novica, class: "action-btn" %>
-                <%= link_to "Edit", edit_novica_path(novica), class: "action-btn" %>
-                <%= button_to "Destroy", novica, method: :delete, data: { turbo_confirm: "Are you sure?" }, class: "action-btn action-destroy" %>
+                <% if user_signed_in? %>
+                  <%= link_to "Edit", edit_novica_path(novica), class: "action-btn" %>
+                  <%= button_to "Destroy", novica, method: :delete, data: { turbo_confirm: "Are you sure?" }, class: "action-btn action-destroy" %>
+                <% end %>
               </div>
             </div>
           <% end %>
