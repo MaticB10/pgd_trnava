@@ -34,16 +34,19 @@ class NovicasController < ApplicationController
 
   # PATCH/PUT /novicas/1 or /novicas/1.json
   def update
-    respond_to do |format|
-      if @novica.update(novica_params)
-        format.html { redirect_to @novica, notice: "Novica was successfully updated." }
-        format.json { render :show, status: :ok, location: @novica }
-      else
-        format.html { render :edit, status: :unprocessable_entity }
-        format.json { render json: @novica.errors, status: :unprocessable_entity }
+    if @novica.update(novica_params)
+      respond_to do |format|
+        format.turbo_stream # => Renders update.turbo_stream.erb
+        format.html { redirect_to @novica, notice: "Novica updated." }
+      end
+    else
+      respond_to do |format|
+        format.turbo_stream { render :edit, status: :unprocessable_entity }
+        format.html { render :edit }
       end
     end
   end
+  
 
   # DELETE /novicas/1 or /novicas/1.json
   def destroy
@@ -63,6 +66,7 @@ class NovicasController < ApplicationController
 
     # Only allow a list of trusted parameters through.
     def novica_params
-      params.expect(novica: [ :naslov, :vsebina, :datum ])
+      params.require(:novica).permit(:naslov, :vsebina, :datum, images: [])
     end
+    
 end
