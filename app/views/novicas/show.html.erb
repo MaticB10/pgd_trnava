@@ -73,7 +73,7 @@
       <h1>Showing Novica</h1>
 
       <div class="novica-content">
-        <%= render @novica %>
+        <%= render partial: "novica", locals: { novica: @novica, show_images: true } %>
       </div>
 
       <div class="actions">
