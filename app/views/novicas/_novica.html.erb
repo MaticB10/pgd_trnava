@@ -1,15 +1,24 @@
-<div id="<%= dom_id novica %>" class="w-full sm:w-auto my-5 space-y-5">
-  <div>
-    <strong class="block font-medium mb-1">Naslov:</strong>
-    <%= novica.naslov %>
-  </div>
-  <div>
-    <strong class="block font-medium mb-1">Vsebina:</strong>
-    <%= novica.vsebina %>
-  </div>
-  <div>
-    <strong class="block font-medium mb-1">Datum:</strong>
-    <%= novica.datum %>
-  </div>
+<!-- app/views/novicas/_novica.html.erb -->
+<p>
+  <strong>Naslov:</strong>
+  <%= novica.naslov %>
+</p>
 
-</div>
+<p>
+  <strong>Vsebina:</strong>
+  <%= novica.vsebina %>
+</p>
+
+<p>
+  <strong>Datum:</strong>
+  <%= novica.datum %>
+</p>
+
+<% if novica.images.attached? %>
+  <h2>Images:</h2>
+  <% novica.images.each do |image| %>
+    <%= image_tag url_for(image) %>
+  <% end %>
+<% else %>
+  <p>No images attached.</p>
+<% end %>
