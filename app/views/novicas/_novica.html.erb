@@ -14,11 +14,9 @@
   <%= novica.datum %>
 </p>
 
-<% if novica.images.attached? %>
-  <h2>Images:</h2>
+<% if local_assigns[:show_images] && novica.images.attached? %>
+  <h2>Slike:</h2>
   <% novica.images.each do |image| %>
-    <%= image_tag url_for(image) %>
+    <%= image_tag url_for(image), alt: "Prikazana slika" %>
   <% end %>
-<% else %>
-  <p>No images attached.</p>
 <% end %>
