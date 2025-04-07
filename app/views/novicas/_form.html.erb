@@ -111,8 +111,8 @@
 
         <!-- New field: Images -->
         <div class="form-group">
-          <%= f.label :images, "Upload Images" %>
-          <%= f.file_field :images, multiple: true, accept: "image/*" %>
+          <%= form.label :images, "Attach Images" %>
+          <%= form.file_field :images, multiple: true, class: "shadow-sm rounded-md border px-3 py-2" %>
         </div>
 
         <div class="form-group">
